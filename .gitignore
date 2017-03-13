@@ -1,0 +1,13 @@
+test
+*.iml
+.idea
+/build
+.gradle
+androidTest
+/.idea/libraries
+/local.properties
+/.idea/workspace.xml
+gradle/wrapper/gradle-wrapper.jar
+.DS_Store
+/captures
+.externalNativeBuild
