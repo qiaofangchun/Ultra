@@ -1,4 +1,4 @@
-package com.ultra;
+package com.ultra.network;
 
 import java.net.Proxy;
 import java.net.ProxySelector;

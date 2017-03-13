@@ -1,14 +1,12 @@
 package com.ultra;
 
+import com.ultra.network.HttpClient;
+
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
-
-/**
- * Created by qiaofc on 2017/1/23 0023.
- */
 
 public class Test {
     public static void main(String[] args) {
