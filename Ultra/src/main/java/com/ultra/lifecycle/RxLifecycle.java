@@ -24,7 +24,6 @@ import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
 
-
 public class RxLifecycle {
 
     private RxLifecycle() {
@@ -37,7 +36,7 @@ public class RxLifecycle {
      * When the lifecycle event occurs, the source will cease to emit any notifications.
      *
      * @param lifecycle the lifecycle sequence
-     * @param event the event which should conclude notifications from the source
+     * @param event     the event which should conclude notifications from the source
      * @return a reusable {@link LifecycleTransformer} that unsubscribes the source at the specified event
      */
     @Nonnull
@@ -83,7 +82,7 @@ public class RxLifecycle {
      * Note that this is an advanced usage of the library and should generally be used only if you
      * really know what you're doing with a given lifecycle.
      *
-     * @param lifecycle the lifecycle sequence
+     * @param lifecycle           the lifecycle sequence
      * @param correspondingEvents a function which tells the source when to unsubscribe
      * @return a reusable {@link LifecycleTransformer} that unsubscribes the source during the Fragment lifecycle
      */
