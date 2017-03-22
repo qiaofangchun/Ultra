@@ -1,4 +1,4 @@
-package com.ultra;
+package com.ultra.app.network;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

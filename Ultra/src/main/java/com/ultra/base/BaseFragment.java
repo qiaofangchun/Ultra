@@ -25,7 +25,7 @@ import io.reactivex.subjects.BehaviorSubject;
  */
 
 public abstract class BaseFragment extends Fragment implements LifecycleProvider<FragmentEvent> {
-    private View layoutView;
+    private View layout;
     protected Context context;
     private boolean isFirstLoad = true;
     private boolean isViewCreated = false;
@@ -76,17 +76,15 @@ public abstract class BaseFragment extends Fragment implements LifecycleProvider
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (layoutView == null) {
-            layoutView = getLayoutView(inflater, container);
+        if (layout == null) {
+            layout = getLayoutView(inflater, container);
         }
-        ViewGroup parent = (ViewGroup) layoutView.getParent();
+        ViewGroup parent = (ViewGroup) layout.getParent();
         if (parent != null) {
-            parent.removeView(layoutView);
+            parent.removeView(layout);
         }
-        return layoutView;
+        return layout;
     }
-
-    protected abstract void initWithView();
 
     protected abstract View getLayoutView(LayoutInflater inflater, ViewGroup container);
 
@@ -97,7 +95,7 @@ public abstract class BaseFragment extends Fragment implements LifecycleProvider
         lifecycleSubject.onNext(FragmentEvent.CREATE_VIEW);
         isViewCreated = true;
         if (isNeedInitView) {
-            initWithView();
+            onCreatedView();
         }
     }
 
@@ -107,12 +105,14 @@ public abstract class BaseFragment extends Fragment implements LifecycleProvider
         if (isVisibleToUser && isFirstLoad) {
             if (isViewCreated) {
                 isFirstLoad = false;
-                initWithView();
+                onCreatedView();
             } else {
                 isNeedInitView = true;
             }
         }
     }
+
+    protected abstract void onCreatedView();
 
     @Override
     @CallSuper
@@ -145,8 +145,6 @@ public abstract class BaseFragment extends Fragment implements LifecycleProvider
     @Override
     @CallSuper
     public void onDestroyView() {
-        isFirstLoad = false;
-        isNeedInitView = false;
         lifecycleSubject.onNext(FragmentEvent.DESTROY_VIEW);
         super.onDestroyView();
     }

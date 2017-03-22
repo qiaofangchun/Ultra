@@ -1,4 +1,4 @@
-package com.ultra;
+package com.ultra.app.network;
 
 import com.ultra.network.HttpClient;
 

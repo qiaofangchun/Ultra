@@ -1,4 +1,4 @@
-package com.ultra;
+package com.ultra.app.network;
 
 /**
  * Created by qiaofc on 2017/1/23 0023.
