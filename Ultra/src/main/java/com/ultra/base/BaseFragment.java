@@ -86,6 +86,8 @@ public abstract class BaseFragment extends Fragment implements LifecycleProvider
         return layout;
     }
 
+    protected abstract void onCreatedView();
+
     protected abstract View getLayoutView(LayoutInflater inflater, ViewGroup container);
 
     @Override
@@ -111,8 +113,6 @@ public abstract class BaseFragment extends Fragment implements LifecycleProvider
             }
         }
     }
-
-    protected abstract void onCreatedView();
 
     @Override
     @CallSuper
