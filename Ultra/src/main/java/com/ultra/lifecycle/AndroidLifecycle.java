@@ -14,6 +14,11 @@ import io.reactivex.functions.Function;
  */
 
 public class AndroidLifecycle {
+
+    private AndroidLifecycle() {
+        throw new AssertionError("No instances");
+    }
+
     /**
      * Binds the given source to an Activity lifecycle.
      * <p>

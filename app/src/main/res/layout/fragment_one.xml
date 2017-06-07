@@ -10,4 +10,10 @@
         android:layout_height="wrap_content"
         android:text="第一个" />
 
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:background="@drawable/ic_chat"
+        android:scaleType="centerCrop" />
+
 </LinearLayout>

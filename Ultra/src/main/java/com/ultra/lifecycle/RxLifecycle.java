@@ -1,20 +1,4 @@
-/**
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.ultra.lifecycle;
-
-import com.ultra.lifecycle.internal.Preconditions;
 
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
@@ -23,6 +7,8 @@ import io.reactivex.Observable;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
+
+import static com.ultra.lifecycle.internal.Preconditions.checkNotNull;
 
 public class RxLifecycle {
 
@@ -36,14 +22,15 @@ public class RxLifecycle {
      * When the lifecycle event occurs, the source will cease to emit any notifications.
      *
      * @param lifecycle the lifecycle sequence
-     * @param event     the event which should conclude notifications from the source
+     * @param event the event which should conclude notifications from the source
      * @return a reusable {@link LifecycleTransformer} that unsubscribes the source at the specified event
      */
     @Nonnull
     @CheckReturnValue
-    public static <T, R> LifecycleTransformer<T> bindUntilEvent(@Nonnull final Observable<R> lifecycle, @Nonnull final R event) {
-        Preconditions.checkNotNull(lifecycle, "lifecycle == null");
-        Preconditions.checkNotNull(event, "event == null");
+    public static <T, R> LifecycleTransformer<T> bindUntilEvent(@Nonnull final Observable<R> lifecycle,
+                                                                @Nonnull final R event) {
+        checkNotNull(lifecycle, "lifecycle == null");
+        checkNotNull(event, "event == null");
         return bind(takeUntilEvent(lifecycle, event));
     }
 
@@ -82,30 +69,31 @@ public class RxLifecycle {
      * Note that this is an advanced usage of the library and should generally be used only if you
      * really know what you're doing with a given lifecycle.
      *
-     * @param lifecycle           the lifecycle sequence
+     * @param lifecycle the lifecycle sequence
      * @param correspondingEvents a function which tells the source when to unsubscribe
      * @return a reusable {@link LifecycleTransformer} that unsubscribes the source during the Fragment lifecycle
      */
     @Nonnull
     @CheckReturnValue
-    public static <T, R> LifecycleTransformer<T> bind(@Nonnull Observable<R> lifecycle, @Nonnull final Function<R, R> correspondingEvents) {
-        Preconditions.checkNotNull(lifecycle, "lifecycle == null");
-        Preconditions.checkNotNull(correspondingEvents, "correspondingEvents == null");
+    public static <T, R> LifecycleTransformer<T> bind(@Nonnull Observable<R> lifecycle,
+                                                      @Nonnull final Function<R, R> correspondingEvents) {
+        checkNotNull(lifecycle, "lifecycle == null");
+        checkNotNull(correspondingEvents, "correspondingEvents == null");
         return bind(takeUntilCorrespondingEvent(lifecycle.share(), correspondingEvents));
     }
 
     private static <R> Observable<Boolean> takeUntilCorrespondingEvent(final Observable<R> lifecycle,
                                                                        final Function<R, R> correspondingEvents) {
         return Observable.combineLatest(
-                lifecycle.take(1).map(correspondingEvents),
-                lifecycle.skip(1),
-                new BiFunction<R, R, Boolean>() {
-                    @Override
-                    public Boolean apply(R bindUntilEvent, R lifecycleEvent) throws Exception {
-                        return lifecycleEvent.equals(bindUntilEvent);
-                    }
-                })
-                .onErrorReturn(Functions.RESUME_FUNCTION)
-                .filter(Functions.SHOULD_COMPLETE);
+            lifecycle.take(1).map(correspondingEvents),
+            lifecycle.skip(1),
+            new BiFunction<R, R, Boolean>() {
+                @Override
+                public Boolean apply(R bindUntilEvent, R lifecycleEvent) throws Exception {
+                    return lifecycleEvent.equals(bindUntilEvent);
+                }
+            })
+            .onErrorReturn(Functions.RESUME_FUNCTION)
+            .filter(Functions.SHOULD_COMPLETE);
     }
 }

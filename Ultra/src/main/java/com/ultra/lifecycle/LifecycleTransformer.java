@@ -1,20 +1,4 @@
-/*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.ultra.lifecycle;
-
-import com.ultra.lifecycle.internal.Preconditions;
 
 import org.reactivestreams.Publisher;
 
@@ -36,20 +20,22 @@ import io.reactivex.Single;
 import io.reactivex.SingleSource;
 import io.reactivex.SingleTransformer;
 
+import static com.ultra.lifecycle.internal.Preconditions.checkNotNull;
+
 /**
  * Transformer that continues a subscription until a second Observable emits an event.
  */
 @ParametersAreNonnullByDefault
 public final class LifecycleTransformer<T> implements ObservableTransformer<T, T>,
-        FlowableTransformer<T, T>,
-        SingleTransformer<T, T>,
-        MaybeTransformer<T, T>,
-        CompletableTransformer
+                                                      FlowableTransformer<T, T>,
+                                                      SingleTransformer<T, T>,
+                                                      MaybeTransformer<T, T>,
+                                                      CompletableTransformer
 {
     final Observable<?> observable;
 
     LifecycleTransformer(Observable<?> observable) {
-        Preconditions.checkNotNull(observable, "observable == null");
+        checkNotNull(observable, "observable == null");
         this.observable = observable;
     }
 
