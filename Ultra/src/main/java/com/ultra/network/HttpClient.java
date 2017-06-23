@@ -19,6 +19,7 @@ import okhttp3.ConnectionSpec;
 import okhttp3.CookieJar;
 import okhttp3.Dispatcher;
 import okhttp3.Dns;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Protocol;
@@ -31,6 +32,13 @@ public final class HttpClient {
 
     private HttpClient(Retrofit.Builder retrofitBuilder, OkHttpClient.Builder okHttpClientBuilder) {
         retrofit = retrofitBuilder.client(okHttpClientBuilder.build()).build();
+    }
+
+    public Retrofit getRetrofit() {
+        if (retrofit == null) {
+            new NullPointerException("retrofit is null,Please configure HttpClient!");
+        }
+        return retrofit;
     }
 
     public <T> T create(final Class<T> service) {
@@ -58,11 +66,6 @@ public final class HttpClient {
 
         public Builder addInterceptor(Interceptor interceptor) {
             okHttpClientBuilder.addInterceptor(interceptor);
-            return this;
-        }
-
-        public Builder baseUrl(String baseUrl) {
-            retrofitBuilder.baseUrl(baseUrl);
             return this;
         }
 
@@ -173,6 +176,16 @@ public final class HttpClient {
             if (timeout > 0) {
                 okHttpClientBuilder.writeTimeout(timeout, unit);
             }
+            return this;
+        }
+
+        public Builder baseUrl(String baseUrl) {
+            retrofitBuilder.baseUrl(baseUrl);
+            return this;
+        }
+
+        public Builder baseUrl(HttpUrl baseUrl) {
+            retrofitBuilder.baseUrl(baseUrl);
             return this;
         }
 
