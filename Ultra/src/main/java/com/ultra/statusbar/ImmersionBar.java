@@ -12,6 +12,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.ColorUtils;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -1020,7 +1021,7 @@ public class ImmersionBar {
      */
     public ImmersionBar addTag(String tag) {
         tag = mActivityName + "_TAG_" + tag;
-        if (!isEmpty(tag)) {
+        if (!TextUtils.isEmpty(tag)) {
             BarParams barParams = mBarParams.clone();
             mTagMap.put(tag, barParams);
             ArrayList<String> tagList = mTagKeyMap.get(mActivityName);
@@ -1044,7 +1045,7 @@ public class ImmersionBar {
      * @return the immersion bar
      */
     public ImmersionBar getTag(String tag) {
-        if (!isEmpty(tag)) {
+        if (!TextUtils.isEmpty(tag)) {
             BarParams barParams = mTagMap.get(mActivityName + "_TAG_" + tag);
             if (barParams != null) {
                 mBarParams = barParams.clone();
@@ -1533,9 +1534,5 @@ public class ImmersionBar {
      */
     public BarParams getBarParams() {
         return mBarParams;
-    }
-
-    private boolean isEmpty(String str) {
-        return str == null || str.trim().length() == 0;
     }
 }
