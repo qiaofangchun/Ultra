@@ -7,18 +7,16 @@ import android.view.View;
 import android.widget.Button;
 
 import com.ultra.app.status.ActionBarActivity;
+import com.ultra.app.status.StatusActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button statusBar, network;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        network = (Button) findViewById(R.id.network);
-        statusBar = (Button) findViewById(R.id.status_bar);
-        network.setOnClickListener(this);
-        statusBar.setOnClickListener(this);
+        findViewById(R.id.network).setOnClickListener(this);
+        findViewById(R.id.status_bar).setOnClickListener(this);
     }
 
     @Override
@@ -26,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.status_bar:
-                intent.setClass(this, ActionBarActivity.class);
+                intent.setClass(this, StatusActivity.class);
                 break;
             case R.id.network:
                 intent.setClass(this, NetWorkActivity.class);
