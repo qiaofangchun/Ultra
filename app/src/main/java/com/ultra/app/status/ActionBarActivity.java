@@ -11,10 +11,6 @@ import com.ultra.app.R;
 import com.ultra.base.BaseActivity;
 import com.ultra.statusbar.ImmersionBar;
 
-/**
- * Created by geyifeng on 2017/6/2.
- */
-
 public class ActionBarActivity extends BaseActivity {
     Button btn;
     TextView text;

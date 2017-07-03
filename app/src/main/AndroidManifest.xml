@@ -24,6 +24,11 @@
             android:theme="@style/ActionBar" />
         <activity android:name=".status.StatusActivity" />
         <activity android:name=".status.ImgAndColorActivity" />
+        <activity android:name=".status.ColorActivity" />
+        <activity
+            android:name=".status.PictureActivity"
+            android:label="@string/title_activity_picture"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
