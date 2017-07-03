@@ -1,4 +1,4 @@
-package com.ultra.statusbar;
+package com.ultra.utils;
 
 import android.app.Activity;
 import android.os.Build;
@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 
 /**
  * Flyme OS 修改状态栏字体颜色工具类
- * Created by gyf on 2017/05/30.
+ * Created by Administrator on 2017/06/17.
  */
 public class FlymeOSStatusBarFontUtils {
     private static Method mSetStatusBarColorIcon;
