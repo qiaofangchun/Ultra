@@ -1,57 +1,35 @@
 package com.ultra.app;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 
-import com.ultra.app.fragment.FourFragment;
-import com.ultra.app.fragment.OneFragment;
-import com.ultra.app.fragment.ThreeFragment;
-import com.ultra.app.fragment.TwoFragment;
+import com.ultra.app.status.ActionBarActivity;
+import com.ultra.app.status.StatusActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity {
-    private ViewPager viewPager;
-    private List<Fragment> fragments;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-        initWithData();
+        findViewById(R.id.network).setOnClickListener(this);
+        findViewById(R.id.status_bar).setOnClickListener(this);
     }
 
-    private void initWithData() {
-        fragments = new ArrayList<>();
-        fragments.add(new OneFragment());
-        fragments.add(new TwoFragment());
-        fragments.add(new ThreeFragment());
-        fragments.add(new FourFragment());
-        viewPager.setAdapter(new Adapter(getSupportFragmentManager()));
-        viewPager.setCurrentItem(0);
-    }
-
-    private class Adapter extends FragmentPagerAdapter {
-
-
-        public Adapter(FragmentManager fm) {
-            super(fm);
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent();
+        switch (v.getId()) {
+            case R.id.status_bar:
+                intent.setClass(this, StatusActivity.class);
+                break;
+            case R.id.network:
+                intent.setClass(this, NetWorkActivity.class);
+                break;
         }
-
-        @Override
-        public Fragment getItem(int position) {
-            return fragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return fragments.size();
-        }
+        startActivity(intent);
     }
 }

@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  * 沉浸式参数信息
- * Created by geyifeng on 2017/5/9.
+ * Created by Administrator on 2017/06/17.
  */
 public class BarParams implements Cloneable {
     @ColorInt
@@ -45,6 +45,9 @@ public class BarParams implements Cloneable {
     public int titleBarHeight;                    //标题栏的高度
     public int titleBarPaddingTopHeight;                    //标题栏的paddingTop高度
     public boolean keyboardEnable = false;   //解决软键盘与输入框冲突问题
+    public int keyboardMode;                 //软键盘属性
+    public boolean navigationBarEnable = true;      //是否能修改导航栏颜色
+    public boolean fixMarginAtBottom = false;  //解决出现底部多余导航栏高度，默认为false
 
     @Override
     protected BarParams clone() {

@@ -1,5 +1,8 @@
 package com.ultra.statusbar;
 
+/**
+ * Created by Administrator on 2017/06/17.
+ */
 public enum BarHide {
     FLAG_HIDE_STATUS_BAR, //隐藏状态栏
     FLAG_HIDE_NAVIGATION_BAR, //隐藏导航栏

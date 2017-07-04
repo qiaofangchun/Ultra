@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 
 /**
  * 手机系统判断
- * Created by geyifeng on 2017/4/18.
+ * Created by Administrator on 2017/5/17.
  */
 public class OSUtils {
 
@@ -115,6 +115,29 @@ public class OSUtils {
         }
         return false;
     }
+
+    /**
+     * 判断flymeOS的版本是否等于5
+     * Is flyme os 5 boolean.
+     *
+     * @return the boolean
+     */
+    public static boolean isFlymeOS5() {
+        String version = getFlymeOSVersion();
+        int num;
+        if (!version.isEmpty()) {
+            if (version.toLowerCase().contains("os")) {
+                num = Integer.valueOf(version.substring(9, 10));
+            } else {
+                num = Integer.valueOf(version.substring(6, 7));
+            }
+            if (num == 5) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     /**
      * 得到flymeOS的版本
