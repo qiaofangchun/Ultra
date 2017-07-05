@@ -1,75 +1,53 @@
 package com.ultra.imageloader;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.widget.ImageView;
 
+import java.io.File;
 
 /**
  * Created by Administrator on 2017/7/4 0004.
  */
 public interface ImageLoaderStrategy {
 
-    /**
-     * 通过url加载图片，无占位图
-     * @param url 网络图片地址
-     * @param imageView 图片控件
-     */
-    void loadImage(String url, ImageView imageView);
+    void load(Uri uri);
 
-    /**
-     * 通过资源文件加载图片，无占位图
-     * @param res 图片资源文件
-     * @param imageView 图片控件
-     */
-    void loadImage(int res, ImageView imageView);
+    void load(File file);
 
-    /**
-     * 通过url加载图片，无占位图，
-     * @param url 网络图片地址
-     * @param imageView 图片控件
-     */
-    void loadImageWithAppCxt(String url, ImageView imageView);
+    void load(String url);
 
-    /**
-     * 通过资源文件加载图片，无占位图
-     * @param res 图片资源文件
-     * @param imageView 图片控件
-     */
-    void loadImageWithAppCxt(int res, ImageView imageView);
+    void load(int resourceId);
 
-    void loadCircleImage(String url, int placeholder, ImageView imageView);
+    void error(int resourceId);
 
-    void loadCircleBorderImage(String url, int placeholder, ImageView imageView, float borderWidth, int borderColor);
+    void error(Drawable drawable);
 
-    void loadCircleBorderImage(String url, int placeholder, ImageView imageView, float borderWidth, int borderColor, int heightPx, int widthPx);
+    void placeholder(int resourceId);
 
+    void placeholder(Drawable drawable);
 
-    void loadImage(String url, int placeholder, ImageView imageView);
+    void into(ImageView view);
 
-    void loadImageWithProgress(String url, ImageView imageView, ProgressListener listener);
-
-    void loadImageWithPrepareCall(String url, ImageView imageView, int placeholder, SourceReadyListener listener);
-
-    void loadGifImage(String url, int placeholder, ImageView imageView);
-
-    void loadGifWithProgress(String url, ImageView imageView, ProgressListener listener);
-
-    void loadGifWithPrepareCall(String url, ImageView imageView, SourceReadyListener listener);
 
     /**
      * 清除硬盘缓存
+     *
      * @param context 上下文
      */
     void clearImageDiskCache(final Context context);
 
     /**
      * 清除内存缓存
+     *
      * @param context 上下文
      */
     void clearImageMemoryCache(Context context);
 
     /**
      * 根据不同的内存状态，来响应不同的内存释放策略
+     *
      * @param context
      * @param level
      */
@@ -77,6 +55,7 @@ public interface ImageLoaderStrategy {
 
     /**
      * 获取缓存大小
+     *
      * @param context 上下文
      * @return
      */
@@ -84,11 +63,11 @@ public interface ImageLoaderStrategy {
 
     /**
      * 保存网络图片到本地
+     *
      * @param url
      * @param savePath
      * @param saveFileName
      * @param listener
      */
     void saveImage(String url, String savePath, String saveFileName, ImageSaveListener listener);
-
 }

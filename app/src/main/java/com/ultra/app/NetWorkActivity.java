@@ -1,10 +1,14 @@
 package com.ultra.app;
 
 import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.ultra.base.BaseActivity;
 import com.ultra.network.HttpClient;
+
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -26,35 +30,41 @@ public class NetWorkActivity extends BaseActivity {
     }
 
     private void initNetWrok() {
+        Log.e("qfc", "start init network tools---->" + System.currentTimeMillis());
         HttpClient httpClient = new HttpClient.Builder()
                 .baseUrl("http://www.jianshu.com/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
+        Log.e("qfc", "start request network---->" + System.currentTimeMillis());
         httpClient.create(Api.class).getNetData()
+                .compose(this.<String>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
+                .delay(2,TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<String>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
 
-            }
+                    }
 
-            @Override
-            public void onNext(@NonNull String s) {
-                Toast.makeText(NetWorkActivity.this, s, Toast.LENGTH_LONG).show();
-            }
+                    @Override
+                    public void onNext(@NonNull String s) {
+                        Log.e("qfc", "request network end---->" + System.currentTimeMillis());
+                        Toast.makeText(NetWorkActivity.this, s, Toast.LENGTH_LONG).show();
+                        Log.e("qfc", "show Toast---->" + System.currentTimeMillis());
+                    }
 
-            @Override
-            public void onError(@NonNull Throwable e) {
-                Toast.makeText(NetWorkActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Toast.makeText(NetWorkActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
 
-            @Override
-            public void onComplete() {
+                    @Override
+                    public void onComplete() {
 
-            }
-        });
+                    }
+                });
 
     }
 

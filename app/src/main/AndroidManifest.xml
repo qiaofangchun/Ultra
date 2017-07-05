@@ -18,17 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NetWorkActivity" />
         <activity
             android:name=".status.ActionBarActivity"
             android:theme="@style/ActionBar" />
+        <activity android:name=".NetWorkActivity" />
         <activity android:name=".status.StatusActivity" />
         <activity android:name=".status.ImgAndColorActivity" />
         <activity android:name=".status.ColorActivity" />
-        <activity
-            android:name=".status.PictureActivity"
-            android:label="@string/title_activity_picture"
-            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".status.PictureActivity" />
     </application>
 
 </manifest>
