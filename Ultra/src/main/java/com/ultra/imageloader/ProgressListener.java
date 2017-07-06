@@ -2,7 +2,7 @@ package com.ultra.imageloader;
 
 /**
  * 通知图片加载进度
- * modified by soulrelay
+ * Created by Administrator on 2017/7/5 0005.
  */
 public interface ProgressListener {
 

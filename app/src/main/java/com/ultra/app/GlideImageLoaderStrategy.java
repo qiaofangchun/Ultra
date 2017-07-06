@@ -3,10 +3,19 @@ package com.ultra.app;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
-import com.ultra.app.status.BaseImageLoaderStrategy;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
+import com.squareup.picasso.Picasso;
+import com.ultra.imageloader.BaseImageLoaderStrategy;
 import com.ultra.imageloader.ImageSaveListener;
+import com.ultra.imageloader.ProgressListener;
 
 import java.io.File;
 
@@ -15,10 +24,13 @@ import java.io.File;
  */
 
 public class GlideImageLoaderStrategy extends BaseImageLoaderStrategy {
+    private RequestOptions options;
     private GlideRequest requestBuilder;
 
-    public GlideImageLoaderStrategy(Context context) {
-        super(context);
+    @Override
+    public void init(Context context) {
+        this.context = context;
+        options = new RequestOptions();
         requestBuilder = GlideApp.with(context).load("");
     }
 
@@ -44,28 +56,33 @@ public class GlideImageLoaderStrategy extends BaseImageLoaderStrategy {
 
     @Override
     public void error(int resourceId) {
-        requestBuilder.error(resourceId);
+        options.error(resourceId);
     }
 
     @Override
     public void error(Drawable drawable) {
-        requestBuilder.error(drawable);
+        options.error(drawable);
     }
 
     @Override
     public void placeholder(int resourceId) {
-        requestBuilder.error(resourceId);
+        options.error(resourceId);
     }
 
     @Override
     public void placeholder(Drawable drawable) {
-        requestBuilder.error(drawable);
+        options.error(drawable);
     }
 
     @Override
 
     public void into(ImageView imageView) {
-        requestBuilder.into(imageView);
+        requestBuilder.apply(options).into(imageView);
+    }
+
+    @Override
+    public void listener(final ProgressListener listener) {
+
     }
 
     @Override
@@ -80,7 +97,7 @@ public class GlideImageLoaderStrategy extends BaseImageLoaderStrategy {
 
     @Override
     public void trimMemory(Context context, int level) {
-
+        GlideApp.get(context).trimMemory(level);
     }
 
     @Override

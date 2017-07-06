@@ -1,5 +1,6 @@
 package com.ultra.imageloader;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.widget.ImageView;
@@ -7,17 +8,17 @@ import android.widget.ImageView;
 import java.io.File;
 
 /**
- * Created by qiaofc on 2017/7/5 0005.
+ * Created by Administrator on 2017/7/5 0005.
  */
 
 public class ImageLoader {
-    private ImageLoaderStrategy strategy;
+    private BaseImageLoaderStrategy strategy;
     private static ImageLoader imageLoader;
 
     private ImageLoader() {
     }
 
-    public static ImageLoader init(ImageLoaderStrategy strategy) {
+    public static void init(BaseImageLoaderStrategy strategy) {
         if (imageLoader == null) {
             synchronized (ImageLoader.class) {
                 if (imageLoader == null) {
@@ -25,32 +26,31 @@ public class ImageLoader {
                 }
             }
         }
-        imageLoader.strategy(strategy);
-        return imageLoader;
+        imageLoader.strategy = strategy;
     }
 
-    private ImageLoader strategy(ImageLoaderStrategy strategy) {
-        this.strategy = strategy;
-        return this;
+    public static ImageLoader get(Context context) {
+        if (ImageLoader.imageLoader == null) {
+            throw new NullPointerException("you must be first call init method");
+        }
+        imageLoader.strategy.init(context);
+        return ImageLoader.imageLoader;
     }
 
-    public ImageLoader load(Uri uri) {
-        strategy.load(uri);
-        return this;
-    }
-
-    public ImageLoader load(File file) {
-        strategy.load(file);
-        return this;
-    }
-
-    public ImageLoader load(String url) {
-        strategy.load(url);
-        return this;
-    }
-
-    public ImageLoader load(int resourceId) {
-        strategy.load(resourceId);
+    public ImageLoader load(Object object) {
+        if (object instanceof String) {
+            strategy.load((String) object);
+        } else if (object instanceof Uri) {
+            strategy.load((Uri) object);
+        } else if (object instanceof Integer) {
+            strategy.load((Integer) object);
+        } else if (object instanceof File) {
+            strategy.load((File) object);
+        } else {
+            throw new UnsupportedOperationException(
+                    String.format("picture loading mode is not supported for %s",
+                            object.getClass().getSimpleName()));
+        }
         return this;
     }
 
@@ -76,5 +76,13 @@ public class ImageLoader {
 
     public void into(ImageView imageView) {
         strategy.into(imageView);
+    }
+
+    public static void getCacheSize(Context context) {
+        imageLoader.strategy.getCacheSize(context);
+    }
+
+    public static void saveImage(String url, String savePath, String saveFileName, ImageSaveListener listener) {
+        imageLoader.strategy.saveImage(url, savePath, saveFileName, listener);
     }
 }

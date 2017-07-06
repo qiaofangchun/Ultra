@@ -2,7 +2,7 @@ package com.ultra.imageloader;
 
 /**
  * 图片保存监听器
- * added by sushuai 2017/1/10
+ * Created by Administrator on 2017/7/5 0005.
  */
 public interface ImageSaveListener {
 
