@@ -9,9 +9,12 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
+import com.squareup.picasso.Picasso;
 import com.ultra.app.status.ActionBarActivity;
 import com.ultra.app.status.StatusActivity;
 import com.ultra.imageloader.ImageLoader;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageView imageView;
@@ -23,7 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageView = (ImageView) findViewById(R.id.image);
         findViewById(R.id.network).setOnClickListener(this);
         findViewById(R.id.status_bar).setOnClickListener(this);
-        ImageLoader.init(new GlideImageLoaderStrategy(this))
+        ImageLoader.init(new GlideImageLoaderStrategy());
+        ImageLoader.get(this)
                 .load("http://p2.sanwen8.com/userimage7/16/0221/22/27905781_201602212217260375262590.jpg")
                 .into(imageView);
     }
