@@ -1,5 +1,7 @@
 package com.ultra.lifecycle;
 
+import com.ultra.utils.EmptyUtils;
+
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
@@ -7,8 +9,6 @@ import io.reactivex.Observable;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
-
-import static com.ultra.lifecycle.internal.Preconditions.checkNotNull;
 
 public class RxLifecycle {
 
@@ -29,8 +29,8 @@ public class RxLifecycle {
     @CheckReturnValue
     public static <T, R> LifecycleTransformer<T> bindUntilEvent(@Nonnull final Observable<R> lifecycle,
                                                                 @Nonnull final R event) {
-        checkNotNull(lifecycle, "lifecycle == null");
-        checkNotNull(event, "event == null");
+        EmptyUtils.checkNotNull(lifecycle, "lifecycle == null");
+        EmptyUtils.checkNotNull(event, "event == null");
         return bind(takeUntilEvent(lifecycle, event));
     }
 
@@ -77,8 +77,8 @@ public class RxLifecycle {
     @CheckReturnValue
     public static <T, R> LifecycleTransformer<T> bind(@Nonnull Observable<R> lifecycle,
                                                       @Nonnull final Function<R, R> correspondingEvents) {
-        checkNotNull(lifecycle, "lifecycle == null");
-        checkNotNull(correspondingEvents, "correspondingEvents == null");
+        EmptyUtils.checkNotNull(lifecycle, "lifecycle == null");
+        EmptyUtils.checkNotNull(correspondingEvents, "correspondingEvents == null");
         return bind(takeUntilCorrespondingEvent(lifecycle.share(), correspondingEvents));
     }
 

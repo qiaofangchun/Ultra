@@ -1,5 +1,7 @@
 package com.ultra.lifecycle;
 
+import com.ultra.utils.EmptyUtils;
+
 import org.reactivestreams.Publisher;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -20,8 +22,6 @@ import io.reactivex.Single;
 import io.reactivex.SingleSource;
 import io.reactivex.SingleTransformer;
 
-import static com.ultra.lifecycle.internal.Preconditions.checkNotNull;
-
 /**
  * Transformer that continues a subscription until a second Observable emits an event.
  */
@@ -35,7 +35,7 @@ public final class LifecycleTransformer<T> implements ObservableTransformer<T, T
     final Observable<?> observable;
 
     LifecycleTransformer(Observable<?> observable) {
-        checkNotNull(observable, "observable == null");
+        EmptyUtils.checkNotNull(observable, "observable == null");
         this.observable = observable;
     }
 
