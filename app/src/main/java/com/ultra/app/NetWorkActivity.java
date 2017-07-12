@@ -1,11 +1,11 @@
 package com.ultra.app;
 
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.ultra.base.BaseActivity;
+import com.ultra.lifecycle.ActivityEvent;
 import com.ultra.network.HttpClient;
 
 import java.util.concurrent.TimeUnit;
@@ -38,9 +38,9 @@ public class NetWorkActivity extends BaseActivity {
                 .build();
         Log.e("qfc", "start request network---->" + System.currentTimeMillis());
         httpClient.create(Api.class).getNetData()
-                .compose(this.<String>bindToLifecycle())
-                .subscribeOn(Schedulers.io())
                 .delay(2,TimeUnit.SECONDS)
+                .subscribeOn(Schedulers.io())
+                .compose(this.<String>bindUntilEvent(ActivityEvent.DESTROY))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<String>() {
                     @Override
@@ -50,14 +50,12 @@ public class NetWorkActivity extends BaseActivity {
 
                     @Override
                     public void onNext(@NonNull String s) {
-                        Log.e("qfc", "request network end---->" + System.currentTimeMillis());
-                        Toast.makeText(NetWorkActivity.this, s, Toast.LENGTH_LONG).show();
-                        Log.e("qfc", "show Toast---->" + System.currentTimeMillis());
+                        Toast.makeText(NetWorkActivity.this,s,Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        Toast.makeText(NetWorkActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(NetWorkActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
