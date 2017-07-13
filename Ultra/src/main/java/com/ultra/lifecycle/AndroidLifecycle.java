@@ -4,7 +4,7 @@ import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
 import android.view.View;
 
-import com.ultra.lifecycle.internal.Preconditions;
+import com.ultra.utils.EmptyUtils;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;
@@ -75,7 +75,7 @@ public class AndroidLifecycle {
     @NonNull
     @CheckResult
     public static <T> LifecycleTransformer<T> bindView(@NonNull final View view) {
-        Preconditions.checkNotNull(view, "view == null");
+        EmptyUtils.checkNotNull(view, "view == null");
         return RxLifecycle.bind(Observable.create(new ViewDetachesOnSubscribe(view)));
     }
 
