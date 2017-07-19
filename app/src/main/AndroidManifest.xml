@@ -21,7 +21,7 @@
         <activity
             android:name=".status.ActionBarActivity"
             android:theme="@style/ActionBar" />
-        <activity android:name=".NetWorkActivity" />
+        <activity android:name=".network.NetWorkActivity" />
         <activity android:name=".status.StatusActivity" />
         <activity android:name=".status.ImgAndColorActivity" />
         <activity android:name=".status.ColorActivity" />

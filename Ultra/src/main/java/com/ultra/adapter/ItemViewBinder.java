@@ -1,25 +1,8 @@
-/*
- * Copyright 2016 drakeet. https://github.com/drakeet
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.ultra.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.LayoutManager;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -29,13 +12,11 @@ import java.util.List;
  * @author drakeet
  */
 public abstract class ItemViewBinder<T, VH extends ViewHolder> {
-
-    /* internal */ MultiTypeAdapter adapter;
-
+    MultiTypeAdapter adapter;
 
     @NonNull
     protected abstract VH onCreateViewHolder(
-        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
+            @NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
 
     /**
      * Called by MultiTypeAdapter to display the data with its view holder. This method should
@@ -43,13 +24,13 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      * <p>
      * If you need the position of an item later on (e.g. in a click listener), use
      * {@code ViewHolder#getAdapterPosition()} which will have the updated adapter position.
-     *
+     * <p>
      * Override {@code onBindViewHolder(ViewHolder, Object, List)} instead if your ItemViewBinder
      * can handle efficient partial bind.
      *
      * @param holder The ViewHolder which should be updated to represent the contents of the
-     * given item in the items data set.
-     * @param item The item within the MultiTypeAdapter's items data set.
+     *               given item in the items data set.
+     * @param item   The item within the MultiTypeAdapter's items data set.
      */
     protected abstract void onBindViewHolder(@NonNull VH holder, @NonNull T item);
 
@@ -71,18 +52,18 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      * ItemViewBinder should not assume that the payload passed in notify methods will be
      * received by onBindViewHolder().  For example when the view is not attached to the screen,
      * the payload in notifyItemChange() will be simply dropped.
-     *
+     * <p>
      * This implementation calls the {@code onBindViewHolder(ViewHolder, Object)} by default.
      *
-     * @param holder The ViewHolder which should be updated to represent the contents of the
-     * given item in the items data set.
-     * @param item The item within the MultiTypeAdapter's items data set.
+     * @param holder   The ViewHolder which should be updated to represent the contents of the
+     *                 given item in the items data set.
+     * @param item     The item within the MultiTypeAdapter's items data set.
      * @param payloads A non-null list of merged payloads. Can be empty list if requires full
-     * update.
+     *                 update.
      * @since v2.5.0
      */
     protected void onBindViewHolder(
-        @NonNull VH holder, @NonNull T item, @NonNull List<Object> payloads) {
+            @NonNull VH holder, @NonNull T item, @NonNull List<Object> payloads) {
         onBindViewHolder(holder, item);
     }
 
@@ -125,7 +106,7 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
 
     /**
      * Called when a view created by this {@link ItemViewBinder} has been recycled.
-     *
+     * <p>
      * <p>A view is recycled when a {@link LayoutManager} decides that it no longer
      * needs to be attached to its parent {@link RecyclerView}. This can be because it has
      * fallen out of visibility or a set of cached views represented by views still
@@ -139,7 +120,8 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      * @param holder The ViewHolder for the view being recycled
      * @since v3.1.0
      */
-    protected void onViewRecycled(@NonNull VH holder) {}
+    protected void onViewRecycled(@NonNull VH holder) {
+    }
 
 
     /**
@@ -170,7 +152,7 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      * triggering the transient state instead of handling it manually.
      *
      * @param holder The ViewHolder containing the View that could not be recycled due to its
-     * transient state.
+     *               transient state.
      * @return True if the View should be recycled, false otherwise. Note that if this method
      * returns <code>true</code>, RecyclerView <em>will ignore</em> the transient state of
      * the View and recycle it regardless. If this method returns <code>false</code>,
@@ -185,7 +167,7 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
 
     /**
      * Called when a view created by this {@link ItemViewBinder} has been attached to a window.
-     *
+     * <p>
      * <p>This can be used as a reasonable signal that the view is about to be seen
      * by the user. If the {@link ItemViewBinder} previously freed any resources in
      * {@link #onViewDetachedFromWindow(ViewHolder) onViewDetachedFromWindow}
@@ -194,13 +176,14 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      * @param holder Holder of the view being attached
      * @since v3.1.0
      */
-    protected void onViewAttachedToWindow(@NonNull VH holder) {}
+    protected void onViewAttachedToWindow(@NonNull VH holder) {
+    }
 
 
     /**
      * Called when a view created by this {@link ItemViewBinder} has been detached from its
      * window.
-     *
+     * <p>
      * <p>Becoming detached from the window is not necessarily a permanent condition;
      * the consumer of an Adapter's views may choose to cache views offscreen while they
      * are not visible, attaching and detaching them as appropriate.</p>
@@ -208,5 +191,6 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      * @param holder Holder of the view being detached
      * @since v3.1.0
      */
-    protected void onViewDetachedFromWindow(@NonNull VH holder) {}
+    protected void onViewDetachedFromWindow(@NonNull VH holder) {
+    }
 }
