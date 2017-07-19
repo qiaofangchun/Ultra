@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ultra.app.NetWorkActivity">
+    tools:context="com.ultra.app.network.NetWorkActivity">
 
 </android.support.constraint.ConstraintLayout>

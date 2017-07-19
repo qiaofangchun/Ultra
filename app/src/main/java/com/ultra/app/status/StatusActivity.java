@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.ultra.app.NetWorkActivity;
+import com.ultra.app.network.NetWorkActivity;
 import com.ultra.app.R;
 import com.ultra.base.BaseActivity;
 import com.ultra.statusbar.ImmersionBar;

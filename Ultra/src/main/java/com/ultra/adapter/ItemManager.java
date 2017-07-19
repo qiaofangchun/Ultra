@@ -1,19 +1,3 @@
-/*
- * Copyright 2016 drakeet. https://github.com/drakeet
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.ultra.adapter;
 
 import android.support.annotation.NonNull;
@@ -28,7 +12,7 @@ import java.util.List;
  */
 public class ItemManager implements ItemViewPool {
     private final List<Class<?>> classes;
-    private final List<Linker<?>> linkers;
+    private final List<ItemViewLinker<?>> linkers;
     private final List<ItemViewBinder<?, ?>> binders;
 
 
@@ -61,7 +45,7 @@ public class ItemManager implements ItemViewPool {
      * @param binders the list for binders
      * @param linkers the list for linkers
      */
-    public ItemManager(List<Class<?>> classes, List<ItemViewBinder<?, ?>> binders, List<Linker<?>> linkers) {
+    public ItemManager(List<Class<?>> classes, List<ItemViewBinder<?, ?>> binders, List<ItemViewLinker<?>> linkers) {
         this.classes = classes;
         this.binders = binders;
         this.linkers = linkers;
@@ -72,7 +56,7 @@ public class ItemManager implements ItemViewPool {
     public <T> void register(
             @NonNull Class<? extends T> clazz,
             @NonNull ItemViewBinder<T, ?> binder,
-            @NonNull Linker<T> linker) {
+            @NonNull ItemViewLinker<T> linker) {
         classes.add(clazz);
         binders.add(binder);
         linkers.add(linker);
@@ -110,7 +94,7 @@ public class ItemManager implements ItemViewPool {
 
 
     @NonNull
-    public List<Linker<?>> getLinkers() {
+    public List<ItemViewLinker<?>> getLinkers() {
         return linkers;
     }
 }

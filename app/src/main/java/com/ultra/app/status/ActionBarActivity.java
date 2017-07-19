@@ -12,13 +12,13 @@ import com.ultra.base.BaseActivity;
 import com.ultra.statusbar.ImmersionBar;
 
 public class ActionBarActivity extends BaseActivity {
-    Button btn;
-    TextView text;
+    private Button btn;
+    private TextView text;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_action_bar);
+        setContentView(R.layout.activity_status_action_bar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle("结合actionBar使用");

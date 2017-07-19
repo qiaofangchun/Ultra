@@ -1,9 +1,10 @@
-package com.ultra.app;
+package com.ultra.app.network;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.ultra.app.R;
 import com.ultra.base.BaseActivity;
 import com.ultra.lifecycle.ActivityEvent;
 import com.ultra.network.HttpClient;

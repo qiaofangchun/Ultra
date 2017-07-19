@@ -1,11 +1,8 @@
 package com.ultra.app.status;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -20,7 +17,7 @@ public class PictureActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_picture);
+        setContentView(R.layout.activity_status_picture);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         seekBar = (SeekBar) findViewById(R.id.seek_bar);
         textView = (TextView) findViewById(R.id.text_view);

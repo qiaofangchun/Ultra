@@ -16,7 +16,7 @@ public class ImgAndColorActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_img_and_color);
+        setContentView(R.layout.activity_status_img_and_color);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         ImmersionBar.with(this)
                 .titleBar(toolbar)

@@ -21,7 +21,7 @@ public class ColorActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_color);
+        setContentView(R.layout.activity_status_color);
         layout = findViewById(R.id.layout);
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);

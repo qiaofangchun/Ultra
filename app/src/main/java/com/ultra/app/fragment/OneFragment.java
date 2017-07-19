@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ultra.app.NetWorkActivity;
+import com.ultra.app.network.NetWorkActivity;
 import com.ultra.app.R;
 import com.ultra.base.BaseFragment;
 
