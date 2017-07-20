@@ -21,11 +21,12 @@
         <activity
             android:name=".status.ActionBarActivity"
             android:theme="@style/ActionBar" />
-        <activity android:name=".network.NetWorkActivity" />
-        <activity android:name=".status.StatusActivity" />
-        <activity android:name=".status.ImgAndColorActivity" />
         <activity android:name=".status.ColorActivity" />
+        <activity android:name=".status.FlymeActivity" />
+        <activity android:name=".status.StatusActivity" />
         <activity android:name=".status.PictureActivity" />
+        <activity android:name=".network.NetWorkActivity" />
+        <activity android:name=".status.ImgAndColorActivity" />
     </application>
 
 </manifest>

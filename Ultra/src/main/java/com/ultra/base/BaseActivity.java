@@ -12,7 +12,6 @@ import com.ultra.lifecycle.AndroidLifecycle;
 import com.ultra.lifecycle.LifecycleProvider;
 import com.ultra.lifecycle.LifecycleTransformer;
 import com.ultra.lifecycle.RxLifecycle;
-import com.ultra.statusbar.ImmersionBar;
 
 import io.reactivex.Observable;
 import io.reactivex.subjects.BehaviorSubject;
@@ -50,7 +49,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Lifecycl
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         lifecycleSubject.onNext(ActivityEvent.CREATE);
-        ImmersionBar.with(this).init();
     }
 
     @Override
@@ -86,6 +84,5 @@ public abstract class BaseActivity extends AppCompatActivity implements Lifecycl
     protected void onDestroy() {
         lifecycleSubject.onNext(ActivityEvent.DESTROY);
         super.onDestroy();
-        ImmersionBar.with(this).destroy();
     }
 }
