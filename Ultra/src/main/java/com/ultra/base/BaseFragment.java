@@ -66,6 +66,20 @@ public abstract class BaseFragment extends Fragment implements LifecycleProvider
         lifecycleSubject.onNext(FragmentEvent.ATTACH);
     }
 
+    /**
+     * 当前页面Fragment支持沉浸式初始化。子类可以重写返回false，设置不支持沉浸式初始化
+     * Immersion bar enabled boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean immersionEnabled() {
+        return true;
+    }
+
+    protected void immersionInit(){
+
+    }
+
     @Override
     @CallSuper
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,6 +92,9 @@ public abstract class BaseFragment extends Fragment implements LifecycleProvider
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (layout == null) {
             layout = getLayoutView(inflater, container);
+        }
+        if(immersionEnabled()){
+            immersionInit();
         }
         ViewGroup parent = (ViewGroup) layout.getParent();
         if (parent != null) {

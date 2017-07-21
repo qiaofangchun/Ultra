@@ -1,4 +1,4 @@
-package com.ultra.app.fragment;
+package com.ultra.app.status.fragment;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
