@@ -3,10 +3,12 @@ package com.ultra.app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.ultra.app.network.NetWorkActivity;
-import com.ultra.app.status.StatusActivity;
+import com.ultra.app.status.activity.StatusActivity;
+import com.ultra.statusbar.ImmersionBar;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -14,6 +16,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ImmersionBar.with(this)
+                .titleBar(toolbar)
+                .init();
         findViewById(R.id.network).setOnClickListener(this);
         findViewById(R.id.status_bar).setOnClickListener(this);
     }

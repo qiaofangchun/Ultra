@@ -1,4 +1,4 @@
-package com.ultra.app.status;
+package com.ultra.app.status.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +23,9 @@ public class StatusActivity extends BaseActivity implements View.OnClickListener
                 .init();
         findViewById(R.id.btn_pic).setOnClickListener(this);
         findViewById(R.id.btn_color).setOnClickListener(this);
+        findViewById(R.id.btn_shape).setOnClickListener(this);
+        findViewById(R.id.btn_flyme).setOnClickListener(this);
+        findViewById(R.id.btn_fragment).setOnClickListener(this);
         findViewById(R.id.btn_pic_color).setOnClickListener(this);
         findViewById(R.id.btn_action_bar).setOnClickListener(this);
     }
@@ -41,13 +44,13 @@ public class StatusActivity extends BaseActivity implements View.OnClickListener
                 intent.setClass(this, ColorActivity.class);
                 break;
             case R.id.btn_shape:
-                intent.setClass(this, NetWorkActivity.class);
+                intent.setClass(this, ShapeActivity.class);
                 break;
             case R.id.btn_swipe_back:
                 intent.setClass(this, NetWorkActivity.class);
                 break;
             case R.id.btn_fragment:
-                intent.setClass(this, NetWorkActivity.class);
+                intent.setClass(this, FragmentActivity.class);
                 break;
             case R.id.btn_drawer:
                 intent.setClass(this, NetWorkActivity.class);
@@ -62,7 +65,7 @@ public class StatusActivity extends BaseActivity implements View.OnClickListener
                 intent.setClass(this, ActionBarActivity.class);
                 break;
             case R.id.btn_flyme:
-                intent.setClass(this, NetWorkActivity.class);
+                intent.setClass(this, FlymeActivity.class);
                 break;
             case R.id.btn_over:
                 intent.setClass(this, NetWorkActivity.class);

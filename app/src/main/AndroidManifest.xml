@@ -19,13 +19,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".status.ActionBarActivity"
+            android:name=".status.activity.ActionBarActivity"
             android:theme="@style/ActionBar" />
         <activity android:name=".network.NetWorkActivity" />
-        <activity android:name=".status.StatusActivity" />
-        <activity android:name=".status.ImgAndColorActivity" />
-        <activity android:name=".status.ColorActivity" />
-        <activity android:name=".status.PictureActivity" />
+        <activity android:name=".status.activity.ShapeActivity"/>
+        <activity android:name=".status.activity.ColorActivity" />
+        <activity android:name=".status.activity.FlymeActivity" />
+        <activity android:name=".status.activity.StatusActivity" />
+        <activity android:name=".status.activity.FragmentActivity"/>
+        <activity android:name=".status.activity.PictureActivity" />
+        <activity android:name=".status.activity.ImgAndColorActivity" />
     </application>
 
 </manifest>
