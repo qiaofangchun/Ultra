@@ -21,6 +21,7 @@ public class StatusActivity extends BaseActivity implements View.OnClickListener
         ImmersionBar.with(this)
                 .titleBar(toolbar)
                 .init();
+        findViewById(R.id.btn_web).setOnClickListener(this);
         findViewById(R.id.btn_pic).setOnClickListener(this);
         findViewById(R.id.btn_color).setOnClickListener(this);
         findViewById(R.id.btn_shape).setOnClickListener(this);
@@ -28,6 +29,7 @@ public class StatusActivity extends BaseActivity implements View.OnClickListener
         findViewById(R.id.btn_fragment).setOnClickListener(this);
         findViewById(R.id.btn_pic_color).setOnClickListener(this);
         findViewById(R.id.btn_action_bar).setOnClickListener(this);
+        findViewById(R.id.btn_white_status_bar).setOnClickListener(this);
     }
 
     @Override
@@ -59,7 +61,7 @@ public class StatusActivity extends BaseActivity implements View.OnClickListener
                 intent.setClass(this, NetWorkActivity.class);
                 break;
             case R.id.btn_web:
-                intent.setClass(this, NetWorkActivity.class);
+                intent.setClass(this, WebActivity.class);
                 break;
             case R.id.btn_action_bar:
                 intent.setClass(this, ActionBarActivity.class);
@@ -74,7 +76,7 @@ public class StatusActivity extends BaseActivity implements View.OnClickListener
                 intent.setClass(this, NetWorkActivity.class);
                 break;
             case R.id.btn_white_status_bar:
-                intent.setClass(this, NetWorkActivity.class);
+                intent.setClass(this, WhiteStatusBarActivity.class);
                 break;
             case R.id.btn_status_hide:
                 intent.setClass(this, NetWorkActivity.class);

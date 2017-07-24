@@ -1,6 +1,5 @@
 package com.ultra.app.status.fragment;
 
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +13,11 @@ import com.ultra.statusbar.ImmersionBar;
  */
 
 public class OneFragment extends BaseFragment {
-    private Toolbar toolbar;
 
     @Override
     protected void immersionInit() {
         ImmersionBar.with(this)
-                .titleBar(toolbar)
+                .titleBar(R.id.toolbar, getView())
                 .statusBarDarkFont(false)
                 .init();
     }
@@ -32,7 +30,6 @@ public class OneFragment extends BaseFragment {
     @Override
     protected View getLayoutView(LayoutInflater inflater, ViewGroup container) {
         View view = inflater.inflate(R.layout.fragment_one, container, false);
-        toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         return view;
     }
 }

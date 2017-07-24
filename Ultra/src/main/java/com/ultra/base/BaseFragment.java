@@ -25,8 +25,8 @@ import io.reactivex.subjects.BehaviorSubject;
  */
 
 public abstract class BaseFragment extends Fragment implements LifecycleProvider<FragmentEvent> {
-    private View layout;
     protected Context context;
+    private View currentLayout;
     private boolean isFirstLoad = true;
     private boolean isViewCreated = false;
     protected boolean isNeedInitView = false;
@@ -90,17 +90,17 @@ public abstract class BaseFragment extends Fragment implements LifecycleProvider
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (layout == null) {
-            layout = getLayoutView(inflater, container);
+        if (currentLayout == null) {
+            currentLayout = getLayoutView(inflater, container);
         }
         if(immersionEnabled()){
             immersionInit();
         }
-        ViewGroup parent = (ViewGroup) layout.getParent();
+        ViewGroup parent = (ViewGroup) currentLayout.getParent();
         if (parent != null) {
-            parent.removeView(layout);
+            parent.removeView(currentLayout);
         }
-        return layout;
+        return currentLayout;
     }
 
     protected abstract void onCreatedView();
@@ -116,6 +116,12 @@ public abstract class BaseFragment extends Fragment implements LifecycleProvider
         if (isNeedInitView) {
             onCreatedView();
         }
+    }
+
+    @Nullable
+    @Override
+    public View getView() {
+        return currentLayout;
     }
 
     @Override

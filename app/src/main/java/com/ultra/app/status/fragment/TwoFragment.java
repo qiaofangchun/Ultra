@@ -19,7 +19,7 @@ public class TwoFragment extends BaseFragment {
     @Override
     protected void immersionInit() {
         ImmersionBar.with(this)
-                .titleBar(toolbar)
+                .titleBar(R.id.toolbar,getView())
                 .statusBarDarkFont(false)
                 .init();
     }
@@ -32,7 +32,6 @@ public class TwoFragment extends BaseFragment {
     @Override
     protected View getLayoutView(LayoutInflater inflater, ViewGroup container) {
         View view = inflater.inflate(R.layout.fragment_two, container, false);
-        toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         return view;
     }
 }
