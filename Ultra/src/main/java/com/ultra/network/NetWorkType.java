@@ -1,7 +1,7 @@
 package com.ultra.network;
 
 /**
- * Created by qiaofc on 2017/7/4 0004.
+ * Created by Administrator on 2017/7/4 0004.
  */
 
 public enum NetWorkType {
