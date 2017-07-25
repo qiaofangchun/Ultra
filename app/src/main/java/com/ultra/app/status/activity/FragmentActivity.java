@@ -11,7 +11,6 @@ import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
 import com.ultra.app.R;
-import com.ultra.app.status.fragment.FourFragment;
 import com.ultra.app.status.fragment.OneFragment;
 import com.ultra.app.status.fragment.ThreeFragment;
 import com.ultra.app.status.fragment.TwoFragment;
