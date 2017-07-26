@@ -29,6 +29,7 @@ public class StatusActivity extends BaseActivity implements View.OnClickListener
         findViewById(R.id.btn_fragment).setOnClickListener(this);
         findViewById(R.id.btn_pic_color).setOnClickListener(this);
         findViewById(R.id.btn_action_bar).setOnClickListener(this);
+        findViewById(R.id.btn_coordinator).setOnClickListener(this);
         findViewById(R.id.btn_white_status_bar).setOnClickListener(this);
     }
 
@@ -58,7 +59,7 @@ public class StatusActivity extends BaseActivity implements View.OnClickListener
                 intent.setClass(this, NetWorkActivity.class);
                 break;
             case R.id.btn_coordinator:
-                intent.setClass(this, NetWorkActivity.class);
+                intent.setClass(this, CoordinatorActivity.class);
                 break;
             case R.id.btn_web:
                 intent.setClass(this, WebActivity.class);
@@ -67,7 +68,7 @@ public class StatusActivity extends BaseActivity implements View.OnClickListener
                 intent.setClass(this, ActionBarActivity.class);
                 break;
             case R.id.btn_flyme:
-                intent.setClass(this, FlymeActivity.class);
+                intent.setClass(this, FlyMeActivity.class);
                 break;
             case R.id.btn_over:
                 intent.setClass(this, NetWorkActivity.class);

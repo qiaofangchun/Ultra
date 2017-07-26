@@ -15,7 +15,7 @@ import com.ultra.statusbar.ImmersionBar;
  * Created by geyifeng on 2017/5/31.
  */
 
-public class FlymeActivity extends BaseActivity {
+public class FlyMeActivity extends BaseActivity {
     private Button btn;
     private EditText et;
 
@@ -34,11 +34,11 @@ public class FlymeActivity extends BaseActivity {
             public void onClick(View v) {
                 String s = "#" + et.getText().toString();
                 if (s.length() == 7)
-                    ImmersionBar.with(FlymeActivity.this)
+                    ImmersionBar.with(FlyMeActivity.this)
                             .flymeOSStatusBarFontColor(s)
                             .init();
                 else
-                    Toast.makeText(FlymeActivity.this, "请正确输入6位颜色值", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FlyMeActivity.this, "请正确输入6位颜色值", Toast.LENGTH_SHORT).show();
             }
         });
     }
