@@ -38,6 +38,12 @@
                 android:text="状态栏适配" />
 
             <Button
+                android:id="@+id/adapter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="多类型列表" />
+
+            <Button
                 android:id="@+id/network"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -32,6 +32,8 @@
         <activity android:name=".status.activity.ImgAndColorActivity" />
         <activity android:name=".status.activity.CoordinatorActivity" />
         <activity android:name=".status.activity.WhiteStatusBarActivity" />
+
+        <activity android:name=".adapter.activity.ChatActivity"/>
     </application>
 
 </manifest>

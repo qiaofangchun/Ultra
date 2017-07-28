@@ -30,9 +30,9 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      *
      * @param holder The ViewHolder which should be updated to represent the contents of the
      *               given item in the items data set.
-     * @param item   The item within the MultiTypeAdapter's items data set.
+     * @param data   The item within the MultiTypeAdapter's items data set.
      */
-    protected abstract void onBindViewHolder(@NonNull VH holder, @NonNull T item);
+    protected abstract void onBindViewHolder(@NonNull VH holder, @NonNull T data);
 
 
     /**
